@@ -127,11 +127,7 @@ module Sidekiq
         pcount = Sidekiq::ProcessSet.new.size
         pcount = 1 if pcount == 0
 
-        if(ENV["SIDEKIQ_POLL_INTERVAL"] != nil)
-          ENV["SIDEKIQ_POLL_INTERVAL"].to_i
-        else
-          pcount * Sidekiq.options[:average_scheduled_poll_interval]
-        end
+        pcount * Sidekiq.options[:average_scheduled_poll_interval]
       end
 
       def initial_wait
